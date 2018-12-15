@@ -1,5 +1,5 @@
-# followup: Follow-up Analyses for ANOVAs
--
+followup: Follow-up Analyses for ANOVAs
+---
 
 **followup** is an R package designed for use with [afex](https://github.com/singmann/afex) that makes some common follow-up analyses for ANOVAs easy to do, including linear contrasts, polynomial trend analyses, and simple effects analysis. Contrasts and trends are powered internally by the `contrast()` function from the [emmeans](https://github.com/rvlenth/emmeans) package.
 
@@ -22,6 +22,22 @@ require(devtools)
 devtools::install_github('a-hurst/followup')
 ```
 **followup** is not yet available on CRAN, so 'install.packages' unfortunately won't work.
+
+
+## Functions
+
+```r
+# Performs linear contrasts 
+getContrasts(mod, factor, contr, split = NULL, pooled = FALSE, adj = 'none')
+
+# Performs polynomial trend analyses
+getTrends(mod, factor, split = NULL, pooled = FALSE, adj = 'none')
+
+# Performs simple effects analyses
+simpleEffects(mod, split, pooled = FALSE, returns = 'summary', correction = 'GG')
+```
+
+You can read the documentation for all of these by accessing their documentation in R or RStudio (e.g. `?getContrasts`).
 
 
 ## Examples
@@ -102,3 +118,5 @@ getTrends(model, 'dose', split='supp')
 #  quadratic     0.58 27 14.07796   4.41968535 0.0702842540  0.0450
 
 ```
+
+I'll hopefully add a vignette or two for this package in the future, once I figure out how those work.
