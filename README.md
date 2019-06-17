@@ -53,7 +53,7 @@ dat$dose <- as.factor(dat$dose)
 dat$id <- as.factor(1:nrow(dat))
 
 model <- aov_car(len ~ supp * dose + Error(id), data=dat)
-summary(model)
+nice(model)
 
 # Anova Table (Type 3 tests)
 # 
@@ -93,7 +93,8 @@ simpleEffects(model, 'supp', pooled=TRUE)
 Next, let's do a linear contrast comparing tooth growth in the high dose condition to the two lower dose conditions:
 
 ```r
-getContrasts(modd, 'dose', clist)
+clist <- list(two.vs.others = c(-1/2, -1/2, 1))
+getContrasts(model, 'dose', clist)
 
 # NOTE: Results may be misleading due to involvement in interactions
 #  contrast      estimate df      MSE        F     etaSq p.value
